@@ -6,6 +6,11 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        // identifying cargos' weight
+        int firstCargosWeight = 200;
+        int secondCargosWeight = 300;
+        int thirdCargosWeight = 213;
+
         // this array identifies cargos' location at the beginning
         int[] cargosLocations = new int[3];
         cargosLocations[0] = 1;
@@ -21,10 +26,11 @@ public class Main {
         System.out.print("Please enter the third cargo's expected location: ");
         inputtedLocations[2] = scanner.nextInt();
 
-        // while loop works until user inout correct locations
-        while (!Arrays.equals(cargosLocations, inputtedLocations)) {
+        // while loop works until user inout correct locations or if cargos' weight is not 713
+        while (!Arrays.equals(cargosLocations, inputtedLocations) || checkCargosWeight(firstCargosWeight, secondCargosWeight, thirdCargosWeight) != true)
+        {
             System.out.println("Unfortunately, you indicated the locations wrong.\n" +
-                    "Now cargo's legs carried the cargo to another place");
+                    "Now cargo's legs carried the cargo to another place\n");
             changeCargosLocations(cargosLocations);
 
             System.out.print("Please enter the first cargo's expected location: ");
@@ -34,7 +40,9 @@ public class Main {
             System.out.print("Please enter the third cargo's expected location: ");
             inputtedLocations[2] = scanner.nextInt();
         }
+
     }
+
     // this method changes cargos' locations (cargosLocations array)
     public static int[] changeCargosLocations(int[] cargosLocations)
     {
@@ -46,4 +54,11 @@ public class Main {
         cargosLocations[2] = random.nextInt(max + 1 - min) + min;
         return cargosLocations;
     }
+
+    // this method checks cargos' total weight
+    public static boolean checkCargosWeight(int cargosWeight1, int cargosWeight2, int cargosWeight3)
+    {
+        return cargosWeight1 + cargosWeight2 + cargosWeight3 == 713;
+    }
+
 }
