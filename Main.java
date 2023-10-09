@@ -29,8 +29,12 @@ public class Main {
         // while loop works until user inout correct locations or if cargos' weight is not 713
         while (!Arrays.equals(cargosLocations, inputtedLocations) || checkCargosWeight(firstCargosWeight, secondCargosWeight, thirdCargosWeight) != true)
         {
+            clearScreen();
+
             System.out.println("Unfortunately, you indicated the locations wrong.\n" +
                     "Now cargo's legs carried the cargo to another place.\n");
+            changeCargosLocations(cargosLocations);
+            //System.out.println(cargosLocations[0] + " " + cargosLocations[1] + " " + cargosLocations[2]);
 
             System.out.print("Please enter the first cargo's expected location: ");
             inputtedLocations[0] = scanner.nextInt();
@@ -40,10 +44,19 @@ public class Main {
             inputtedLocations[2] = scanner.nextInt();
         }
 
+        clearScreen();
+
         showCongratulationMessage(inputtedLocations);
     }
 
-    // this method changes cargos' locations (cargosLocations array)
+    // this method clears screen
+    public static void clearScreen()
+    {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    // this method changes cargos' locations (cargosLocations array) and cargos' locations cannot be the same
     public static int[] changeCargosLocations(int[] cargosLocations)
     {
         Random random = new Random();
@@ -52,6 +65,7 @@ public class Main {
         cargosLocations[0] = random.nextInt(max + 1 - min) + min;
         cargosLocations[1] = random.nextInt(max + 1 - min) + min;
         cargosLocations[2] = random.nextInt(max + 1 - min) + min;
+
         return cargosLocations;
     }
 
@@ -64,8 +78,11 @@ public class Main {
     // this method shows message at the end (if user input cargos' location correct)
     public static void showCongratulationMessage(int[] inputtedLocations)
     {
-        System.out.println("Congratulations, you entered cargos location correct.\n" +
-                "Please go to this location and get your cargos.");
+        System.out.println("Congratulations, you entered cargos location correct.\n\n" +
+                "Please go to this location and get our cargos:");
+        System.out.println("1st cargo: buried at " + inputtedLocations[0] + " kilometers from the spaceship");
+        System.out.println("2nd cargo: buried at " + inputtedLocations[1] + " kilometers from the spaceship");
+        System.out.println("3rd cargo: buried at " + inputtedLocations[2] + " kilometers from the spaceship");
     }
 
 }
