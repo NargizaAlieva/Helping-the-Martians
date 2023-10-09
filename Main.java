@@ -30,8 +30,7 @@ public class Main {
         while (!Arrays.equals(cargosLocations, inputtedLocations) || checkCargosWeight(firstCargosWeight, secondCargosWeight, thirdCargosWeight) != true)
         {
             System.out.println("Unfortunately, you indicated the locations wrong.\n" +
-                    "Now cargo's legs carried the cargo to another place\n");
-            changeCargosLocations(cargosLocations);
+                    "Now cargo's legs carried the cargo to another place.\n");
 
             System.out.print("Please enter the first cargo's expected location: ");
             inputtedLocations[0] = scanner.nextInt();
@@ -41,6 +40,7 @@ public class Main {
             inputtedLocations[2] = scanner.nextInt();
         }
 
+        showCongratulationMessage(inputtedLocations);
     }
 
     // this method changes cargos' locations (cargosLocations array)
@@ -59,6 +59,13 @@ public class Main {
     public static boolean checkCargosWeight(int cargosWeight1, int cargosWeight2, int cargosWeight3)
     {
         return cargosWeight1 + cargosWeight2 + cargosWeight3 == 713;
+    }
+
+    // this method shows message at the end (if user input cargos' location correct)
+    public static void showCongratulationMessage(int[] inputtedLocations)
+    {
+        System.out.println("Congratulations, you entered cargos location correct.\n" +
+                "Please go to this location and get your cargos.");
     }
 
 }
