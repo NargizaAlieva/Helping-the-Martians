@@ -27,14 +27,14 @@ public class Main {
         inputtedLocations[2] = scanner.nextInt();
 
         // while loop works until user inout correct locations or if cargos' weight is not 713
-        while (!Arrays.equals(cargosLocations, inputtedLocations) || checkCargosWeight(firstCargosWeight, secondCargosWeight, thirdCargosWeight) != true)
+        while (!Arrays.equals(cargosLocations, inputtedLocations) || !checkCargosWeight(firstCargosWeight, secondCargosWeight, thirdCargosWeight))
         {
             clearScreen();
 
             System.out.println("Unfortunately, you indicated the locations wrong.\n" +
                     "Now cargo's legs carried the cargo to another place.\n");
             changeCargosLocations(cargosLocations);
-            //System.out.println(cargosLocations[0] + " " + cargosLocations[1] + " " + cargosLocations[2]);
+            System.out.println(cargosLocations[0] + " " + cargosLocations[1] + " " + cargosLocations[2]);
 
             System.out.print("Please enter the first cargo's expected location: ");
             inputtedLocations[0] = scanner.nextInt();
@@ -63,10 +63,12 @@ public class Main {
         int max = 6;
         int min = 1;
         cargosLocations[0] = random.nextInt(max + 1 - min) + min;
+        cargosLocations[1] = random.nextInt(max + 1 - min) + min;
         while (cargosLocations[0] == cargosLocations[1])
         {
             cargosLocations[1] = random.nextInt(max + 1 - min) + min;
         }
+        cargosLocations[2] = random.nextInt(max + 1 - min) + min;
         while (cargosLocations[0] == cargosLocations[2] || cargosLocations[1] == cargosLocations[2])
         {
             cargosLocations[2] = random.nextInt(max + 1 - min) + min;
